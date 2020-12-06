@@ -17,5 +17,6 @@ namespace BooksForYou.Models
         public int authorId { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
+        public ICollection<Book> Books { get; set; }
     }
 }

@@ -63,7 +63,7 @@ namespace BooksForYou.Migrations.Book
             modelBuilder.Entity("BooksForYou.Models.Book", b =>
                 {
                     b.HasOne("BooksForYou.Models.Author", "author")
-                        .WithMany()
+                        .WithMany("Books")
                         .HasForeignKey("authorId");
                 });
 #pragma warning restore 612, 618
