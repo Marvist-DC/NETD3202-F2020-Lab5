@@ -14,9 +14,11 @@ namespace BooksForYou.Models
     // This class will create an author object
     public class Author
     {
-        public int authorId { get; set; }
+        public int authorId { get; set; }           // Primary Key
         public string firstName { get; set; }
         public string lastName { get; set; }
+
+        // Navigation
         public ICollection<Book> Books { get; set; }
     }
 }

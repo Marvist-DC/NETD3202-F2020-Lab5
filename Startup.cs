@@ -41,8 +41,7 @@ namespace BooksForYou
             //Adding connection
             string connection = @"Server=(localdb)\mssqllocaldb;Database=Books4You;Trusted_Connection=True;ConnectRetryCount=0";
             //Adding Db Context
-            services.AddDbContext<AuthorContext>(options => options.UseSqlServer(connection));
-            services.AddDbContext<BookContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<RecommendedBooksContext>(options => options.UseSqlServer(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

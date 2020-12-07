@@ -11,9 +11,9 @@ namespace BooksForYou.Controllers
 {
     public class AuthorsController : Controller
     {
-        private readonly AuthorContext _context;
+        private readonly RecommendedBooksContext _context;
 
-        public AuthorsController(AuthorContext context)
+        public AuthorsController(RecommendedBooksContext context)
         {
             _context = context;
         }

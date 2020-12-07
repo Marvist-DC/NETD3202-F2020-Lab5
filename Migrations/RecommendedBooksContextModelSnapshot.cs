@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BooksForYou.Migrations
 {
-    [DbContext(typeof(AuthorContext))]
-    partial class AuthorContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(RecommendedBooksContext))]
+    partial class RecommendedBooksContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -57,7 +57,7 @@ namespace BooksForYou.Migrations
 
                     b.HasIndex("authorId");
 
-                    b.ToTable("Book");
+                    b.ToTable("Books");
                 });
 
             modelBuilder.Entity("BooksForYou.Models.Book", b =>

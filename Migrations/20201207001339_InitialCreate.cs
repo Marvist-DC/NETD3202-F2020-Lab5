@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace BooksForYou.Migrations.Book
+namespace BooksForYou.Migrations
 {
     public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Author",
+                name: "Authors",
                 columns: table => new
                 {
                     authorId = table.Column<int>(nullable: false)
@@ -17,7 +17,7 @@ namespace BooksForYou.Migrations.Book
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Author", x => x.authorId);
+                    table.PrimaryKey("PK_Authors", x => x.authorId);
                 });
 
             migrationBuilder.CreateTable(
@@ -34,9 +34,9 @@ namespace BooksForYou.Migrations.Book
                 {
                     table.PrimaryKey("PK_Books", x => x.bookId);
                     table.ForeignKey(
-                        name: "FK_Books_Author_authorId",
+                        name: "FK_Books_Authors_authorId",
                         column: x => x.authorId,
-                        principalTable: "Author",
+                        principalTable: "Authors",
                         principalColumn: "authorId",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -53,7 +53,7 @@ namespace BooksForYou.Migrations.Book
                 name: "Books");
 
             migrationBuilder.DropTable(
-                name: "Author");
+                name: "Authors");
         }
     }
 }
