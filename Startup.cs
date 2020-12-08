@@ -20,6 +20,8 @@ using Microsoft.AspNetCore.Mvc;
 using BooksForYou.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
+using Microsoft.AspNetCore.Identity;
+using BooksForYou.Data;
 
 namespace BooksForYou
 {
@@ -36,12 +38,16 @@ namespace BooksForYou
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            // Added
+            services.AddRazorPages();
+            services.AddMvc();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddMvc(options => options.EnableEndpointRouting = false);
             //Adding connection
-            string connection = @"Server=(localdb)\mssqllocaldb;Database=Books4You;Trusted_Connection=True;ConnectRetryCount=0";
-            //Adding Db Context
-            services.AddDbContext<RecommendedBooksContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+
+            services.AddDbContext<RecommendedBooksContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,6 +69,10 @@ namespace BooksForYou
             app.UseRouting();
 
             app.UseAuthorization();
+
+            // Added
+            app.UseMvcWithDefaultRoute();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {
